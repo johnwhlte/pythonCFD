@@ -6,9 +6,11 @@ do
     python3 ../pythonScripts/blockMeshgen.py <<ENDOF
 ./${FILE}
 ENDOF
-    rm -rf ../patientCases/P${FILE:0:7}case
-    cp -R ../exampleCase/ ../patientCases/P${FILE:0:7}case
-    cd ../patientCases/P${FILE:0:7}case/
+    key=$(python3 ../pythonScripts/keygen.py)    
+    rm -rf ../patientCases/${key}${FILE}
+    cp -R ../exampleCase/ ../patientCases/${key}${FILE}
+    mv ${FILE} ${key}${FILE}
+    cd ../patientCases/${key}${FILE}/
     blockMesh >bmlog
     cd -
 done
