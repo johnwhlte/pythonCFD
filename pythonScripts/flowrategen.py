@@ -19,7 +19,7 @@ for entry in os.scandir(workdir):
 
 for i in entries:
     adder = []
-    names.append([i[0:7]]*len(flowrates))
+    names.append([i[7:17]]*len(flowrates))
     flows.append(flowrates)
 
 flat_names = [item for sublist in names for item in sublist]
@@ -30,7 +30,7 @@ for i in range(0,len(flat_names)):
 
 df = pd.DataFrame({'Patient IDs': flat_names, 'Flowrates mL/s': flat_flows})
 
-namesShort = [f'P{i[0:7]}case' for i in entries]
+namesShort = [i[0:17] for i in entries]
 
 for i in namesShort:
     for j in flowrates:
