@@ -26,7 +26,7 @@ print(directories)
 
 for i in directories:
     for j in names:
-        if i[1:8] == j[0:7]:
+        if i[7:17] == j[7:17]:
             df = pd.read_csv(paths[names.index(j)],delimiter=',')
             diam = df['Diameter']
             dist = df['Distance']
