@@ -52,6 +52,7 @@ runTimeModifiable true;
 
 functions
 {
+    #includeFunc wallShearStress
     /*#includeFunc streamlinesLine
     (
         funcName=streamlines,

@@ -7,6 +7,7 @@ entries = []
 files = []
 ffrValues = []
 files_new = []
+entries_new = []
 for entry in os.scandir(workdir):
     if(entry.path.endswith('.csv')) and entry.is_file():
         files.append(entry.path)
@@ -17,14 +18,17 @@ for name in entries:
         if name[i] == 'F' and name[i+1] == 'F' and name[i+2] == 'R' and name[i+3] == '_':
             try:
                 ffr = float(name[(i+4):(i+8)])
-                files_new.append(files[i])
+                files_new.append(files[entries.index(name)])
+                entries_new.append(entries[entries.index(name)])
+                ffrValues.append(ffr)
             except ValueError:
                 try:
                     ffr = float(name[(i+4):(i+7)])
                     files_new.append(files[i])
+                    entries_new.append(entries[i])
+                    ffrValues.append(ffr)
                 except ValueError:
                     continue
-    ffrValues.append(ffr)
 
 for i in range(0,len(files_new)):
     df = pd.read_csv(files_new[i],delimiter=',')
@@ -35,7 +39,7 @@ for i in range(0,len(files_new)):
     tempDataF = pd.DataFrame({'Distance':distances,
                                 'Diameter': diameters,
                                 'FFR': ffrs})
-    tempDataF.to_csv(f'../diameterTables/{entries[i]}')
+    tempDataF.to_csv(f'../diameterTables/{entries_new[i]}')
 '''        
 ffr_files = []
 file_names = []
