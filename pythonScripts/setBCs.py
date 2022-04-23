@@ -27,7 +27,7 @@ print(directories)
 for i in directories:
     for j in names:
         if i[0:9] == j[0:9]:
-            a2d.writeBCs_Pinlet_velocityOutlet(paths[names.index(j)],i,float(i[17:21]))
+            a2d.writeBCs_Poutlet_velocityInlet(paths[names.index(j)],i,float(i[17:21]))
         else:
             continue
 
